@@ -6,25 +6,24 @@ import { useRouter } from 'next/navigation';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { signIn } from 'next-auth/react';
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const router = useRouter();
 
-  async function onSubmit() {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setIsLoading(true);
+
     try {
-      //   const result = await signIn("credentials", {
-      //     email: data.email,
-      //     password: data.password,
-      //     redirect: false,
-      //   });
-
-      //   if (result?.error) {
-      //     throw new Error(result.error);
-      //   }
-
-      router.push('/dashboard');
+      await signIn('credentials', {
+        email,
+        password,
+      });
+      router.push('/');
     } catch (error) {
       console.error(error);
     } finally {
@@ -57,6 +56,9 @@ export default function LoginPage() {
                 <Input
                   id='email'
                   type='email'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                   placeholder='name@example.com'
                   className='border-gray-800 bg-gray-900/50 text-white placeholder:text-gray-500'
                 />
@@ -69,6 +71,9 @@ export default function LoginPage() {
                 <Input
                   id='password'
                   type='password'
+                  value={password}
+                  required
+                  onChange={(e) => setPassword(e.target.value)}
                   className='border-gray-800 bg-gray-900/50 text-white placeholder:text-gray-500'
                 />
               </div>

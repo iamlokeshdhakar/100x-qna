@@ -1,7 +1,19 @@
-export default function Home() {
+import Navbar from '@/components/navbar/navbar';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
+
+export default async function Page() {
+  const session = await getServerSession();
+
+  if (session?.user) {
+    redirect('/home');
+  }
+
   return (
-    <div className='flex min-h-screen flex-col items-center justify-center py-2'>
-      Hello World
+    <div>
+      <Navbar />
+      Hello from root page
+      {JSON.stringify(session)}
     </div>
   );
 }
