@@ -25,13 +25,13 @@ const SIDE_BAR_MENU = [
     link: '/dashboard',
   },
   {
-    id: 2,
+    id: 3,
     label: 'My Questions',
     icon: HelpCircle,
     link: '/questions',
   },
   {
-    id: 3,
+    id: 4,
     label: 'My Profile',
     icon: CircleUser,
     link: '/profile',

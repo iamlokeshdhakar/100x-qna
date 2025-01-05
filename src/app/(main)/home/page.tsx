@@ -1,6 +1,7 @@
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import HeaderWrapper from '@/components/wrappers/HeaderWrapper';
+import { AddQuestionDialog } from '@/components/dialogs/add-question';
 import BodyWrapper from '@/components/wrappers/BodyHeader';
 
 export default async function page() {
@@ -10,8 +11,10 @@ export default async function page() {
   }
   return (
     <>
-      <HeaderWrapper title='Dashboard'></HeaderWrapper>
-      <BodyWrapper>Dashboard</BodyWrapper>
+      <HeaderWrapper title='Home Page'>
+        <AddQuestionDialog />
+      </HeaderWrapper>
+      <BodyWrapper>Home Page</BodyWrapper>
     </>
   );
 }
