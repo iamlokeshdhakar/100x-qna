@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import HeaderWrapper from '@/components/wrappers/HeaderWrapper';
 import { AddQuestionDialog } from '@/components/dialogs/add-question';
 import BodyWrapper from '@/components/wrappers/BodyHeader';
+import Home from './home';
 
 export default async function page() {
   const session = await getServerSession();
@@ -14,7 +15,9 @@ export default async function page() {
       <HeaderWrapper title='Home Page'>
         <AddQuestionDialog />
       </HeaderWrapper>
-      <BodyWrapper>Home Page</BodyWrapper>
+      <BodyWrapper>
+        <Home />
+      </BodyWrapper>
     </>
   );
 }
